@@ -7,6 +7,9 @@ import basilisk_lib
 
 from residues import *
 from math_utils import *
+
+PEPTIDE_BOND_LEN = 1.32  # orig author used 1.4, too long. See Biochemistry by Berg et al. 
+
 class Peptide:
     """ Usually instantiated from something like:
 
@@ -126,7 +129,7 @@ class Peptide:
             V3 = Fragment[i].AwesomeMol[Fragment[i].BB[len(Fragment[i].BB) - 1]-1][1]
             V2 = Fragment[i].AwesomeMol[Fragment[i].BB[len(Fragment[i].BB) - 2]-1][1]
             V1 = Fragment[i].AwesomeMol[Fragment[i].BB[len(Fragment[i].BB) - 3]-1][1]
-            ConnectionPoint = V3 + (V2 - V1)/length(V2 - V1)*1.4
+            ConnectionPoint = V3 + (V2 - V1)/length(V2 - V1)*PEPTIDE_BOND_LEN # 1.4 is too big
             ConnectionVector = Fragment[i+1].AwesomeMol[Fragment[i+1].BB[0]-1][1] - ConnectionPoint
 
             #1.2 Translocate 
